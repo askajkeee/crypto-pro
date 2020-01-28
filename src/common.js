@@ -56,7 +56,7 @@ function generateAsyncFn(cb) {
     cb = String(new (canAsync ? GeneratorFunction() : Function)(args, cb));
 
     cb = cb.replace(/cryptoCommon\.createObj(\([\s\S]*?\))/gm, 'cadesplugin.CreateObject' + (canAsync ? 'Async' : '') + '$1');
-    cb = cb.replace(/("|')(yield)(\1)\s*?\+\s*?\b/gm, canAsync ? '$2 ' : '');
+    cb = cb.replace(/("|')(yield)(\1)\s*?\+\s*?/gm, canAsync ? '$2 ' : '');
 
     if (!canAsync) {
         cb = cb.replace(/propset_(.*?)\((.*?)\)/gm, '$1 = $2');
